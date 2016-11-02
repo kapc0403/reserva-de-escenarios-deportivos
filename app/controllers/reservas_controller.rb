@@ -44,17 +44,23 @@ class ReservasController < ApplicationController
   def create
     #abort @resVerifByHour.inspect
     @reserva = Reserva.new(reserva_params)
-    @resVerifByHour = Reserva.where("escenario_id = ? and fecha = ?", @reserva.user_id, @reserva.fecha)
-    abort @resVerifByHour.inspect
-    respond_to do |format|
-      @reserva.estado = "1"
-      @reserva.save
-      if @reserva.save
-        format.html { redirect_to escenarios_path, notice: 'Reserva was successfully created.' }
-        format.json { render :show, status: :created, location: @reserva }
-      else
-        format.html { render :new }
-        format.json { render json: @reserva.errors, status: :unprocessable_entity }
+    @resVerifByHour = Reserva.where("escenario_id = ? and fecha = ?", @reserva.escenario, @reserva.fecha)
+    #abort @reserva.horainicio(1i).inspect
+    if !@resVerifByHour.empty?
+      @reserva.destroy
+      redirect_to escenarios_path
+      flash[:notice] = 'Este escenario ya se encuentra reservado por otro usuario.'
+    else
+      respond_to do |format|
+        @reserva.estado = "1"
+        @reserva.save
+        if @reserva.save
+          format.html { redirect_to escenarios_path, notice: 'Reserva was successfully created.' }
+          format.json { render :show, status: :created, location: @reserva }
+        else
+          format.html { render :new }
+          format.json { render json: @reserva.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
