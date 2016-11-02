@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <p>
+            <strong>Nombre:</strong>
+            <%= @categorium.nombre %>
+          </p>
+          
+          <%= link_to 'Editar', edit_categorium_path(@categorium) %> |
+          <%= link_to 'Atras', categoria_path %>
+        </div>
+    </div>
+</div>

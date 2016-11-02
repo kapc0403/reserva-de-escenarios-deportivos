@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="text-center"><h1>Categorias</h1>
+          <%= link_to 'Nueva Categoria', new_categorium_path, class:"btn btn-default" %></div>
+          
+          <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+              <% @categoria.each do |categorium| %>
+                <tr>
+                  <td><%= categorium.nombre %></td>
+                  <td><%= link_to 'Ver', categorium %></td>
+                  <td><%= link_to 'Editar', edit_categorium_path(categorium) %></td>
+                  <td><%= link_to 'Eliminar', categorium, method: :delete, data: { confirm: '¿Desea eliminar esta categoria?' } %></td>
+                </tr>
+              <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+    </div>
+</div>

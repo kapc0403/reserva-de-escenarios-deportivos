@@ -1,0 +1,1 @@
+json.partial! "escenarios/escenario", escenario: @escenario

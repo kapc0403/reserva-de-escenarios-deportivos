@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  escenario_id: 
+  user_id: 
+  fecha: 2016-11-02
+  horainicio: 2016-11-02 05:06:17
+  horafin: 2016-11-02 05:06:17
+
+two:
+  escenario_id: 
+  user_id: 
+  fecha: 2016-11-02
+  horainicio: 2016-11-02 05:06:17
+  horafin: 2016-11-02 05:06:17

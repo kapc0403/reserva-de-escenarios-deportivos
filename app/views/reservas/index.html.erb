@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="text-center"><h1>Reservas</h1>
+            <%= link_to 'Nueva Reserva', new_reserva_path, class:"btn btn-default" %>
+          </div>
+<div class="box">
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>Escenario</th>
+                  <th>Categoria</th>
+                  <th>User</th>
+                  <th>Fecha</th>
+                  <th>Horainicio</th>
+                  <th>Horafin</th>
+                  <th>Estado</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @reservas.each do |reserva| %>
+                    <tr>
+                      <td><%= reserva.escenario.nombre %></td>
+                      <td><%= reserva.escenario.categorium.nombre %></td>
+                      <td><%= reserva.user.nombreCompleto %></td>
+                      <td><%= reserva.fecha %></td>
+                      <td><%= reserva.horainicio.strftime('%H:%m') %></td>
+                      <td><%= reserva.horafin.strftime('%H:%m') %></td>
+                      <% if reserva.estado == 1 %>
+                        <td style="color:red;">Por confirmar</td>
+                        <td><a><%= link_to "¿Confirmar?", "", :href=> "/changestatereserva/" + reserva.id.to_s%></a></td>
+                      <%else%>
+                        <td style="color:green;">Confirmada</td>
+                        <td></td>
+                      <%end%>
+                      <td><%= link_to 'Ver', reserva %></td>
+                      <td><%= link_to 'Editar', edit_reserva_path(reserva) %></td>
+                      <td><%= link_to 'Eliminar', reserva, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+    </div>
+</div>

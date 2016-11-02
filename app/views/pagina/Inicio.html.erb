@@ -1,0 +1,7 @@
+<h1>Bienvenido, 
+    <% if user_signed_in? %>
+    <%= current_user.nombreCompleto %>!
+    <% else %>
+    Por favor inicie sesión!
+    <% end %>
+</h1>

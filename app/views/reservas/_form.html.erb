@@ -1,0 +1,30 @@
+<%= form_for(@reserva) do |f| %>
+  <% if @reserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+      <% @reserva.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.hidden_field :escenario_id, value: @asd || @reserva.escenario_id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+  <div class="field text-center">
+    <%= f.label :fecha %><br>
+    <%= f.date_select :fecha, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 0, end_year: Date.today.year - 0}, {required: true} %>
+  </div>
+  <div class="field text-center">
+    <%= f.label :horainicio %><br>
+    <%= f.time_select :horainicio, ampm: true, start_hour: 10, end_hour: 23 %>
+  </div>
+  <div class="field text-center">
+    <%= f.label :horafin %><br>
+    <%= f.time_select :horafin, ampm: true, start_hour: 10, end_hour: 23 %>
+  </div><br>
+  <div class="actions text-center">
+    <%= f.submit "Reservar", class:"btn1 be-red white" %>
+  </div>
+<% end %>

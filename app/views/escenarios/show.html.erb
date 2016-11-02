@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <%= image_tag @escenario.foto.url(:medium) %>
+          <br><hr>
+          <p>
+            <strong>Nombre:</strong>
+            <%= @escenario.nombre %>
+          </p>
+          
+          <p>
+            <strong>Categoria:</strong>
+            <%= @escenario.categorium.nombre %>
+          </p>
+          
+          <p>
+            <strong>Nombre:</strong>
+            <%= @escenario.nombre %>
+          </p>
+          
+          <p>
+            <strong>Estado:</strong>
+            <%= @escenario.estado %>
+          </p>
+          
+          <%= link_to 'Editar', edit_escenario_path(@escenario) %> |
+          <%= link_to 'Atras', escenarios_path %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h2 class="text-center">Registrarse</h2>
+  
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        
+        <div class="field">
+          <%= f.label "Nombre Completo" %><br />
+          <%= f.text_field :nombreCompleto, autofocus: true, class:"fcpers" %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :"Nro de Identificación" %><br />
+          <%= f.text_field :nroIdentidicacion, class:"fcpers" %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :telefono %><br />
+          <%= f.text_field :telefono, class:"fcpers" %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, class:"fcpers" %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "off", class:"fcpers" %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "off", class:"fcpers" %>
+        </div><br />
+      
+        <div class="actions text-center">
+          <%= f.submit "Crear Cuenta", class:"btn1 be-red white" %><br />
+          <%= render "devise/shared/links" %>
+        </div>
+      <% end %>
+  
+    </div>
+  </div>
+</div>

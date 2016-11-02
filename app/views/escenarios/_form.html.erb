@@ -1,0 +1,35 @@
+<%= form_for(@escenario) do |f| %>
+  <% if @escenario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@escenario.errors.count, "error") %> prohibited this escenario from being saved:</h2>
+
+      <ul>
+      <% @escenario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, class:"fcpers" %>
+  </div>
+  <div class="field">
+    <%= f.label :categorium_id %><br>
+    <%= f.collection_select(:categorium_id, Categorium.all, :id, :nombre, {:prompt=>false}, {:class=>'fcpers'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br>
+    <%= f.select(:estado, ['Activo', 'En Reparación', 'Inactivo'], {}, { :class=> 'fcpers' }) %>
+  </div>
+  <div class="field">
+    <%= f.label :foto %><br>
+    <%= f.file_field :foto, class:"fcpers" %>
+  </div>
+  <br />
+  
+  <div class="actions text-center">
+    <%= f.submit "Guardar", class:"btn1 be-red white" %>
+  </div>
+<% end %>

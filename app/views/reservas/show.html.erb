@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center">
+          <p>
+            <strong>Escenario:</strong>
+            <%= @reserva.escenario.nombre %>
+          </p>
+          
+          <p>
+            <strong>Usuario:</strong>
+            <%= @reserva.user.nombreCompleto %>
+          </p>
+          
+          <p>
+            <strong>Fecha:</strong>
+            <%= @reserva.fecha %>
+          </p>
+          
+          <p>
+            <strong>Horainicio:</strong>
+            <%= @reserva.horainicio.strftime('%H:%m') %>
+          </p>
+          
+          <p>
+            <strong>Horafin:</strong>
+            <%= @reserva.horafin.strftime('%H:%m') %>
+          </p>
+          
+          <%= link_to 'Editar', edit_reserva_path(@reserva) %> |
+          <%= link_to 'Atras', reservas_path %>
+        </div>
+    </div>
+</div>
