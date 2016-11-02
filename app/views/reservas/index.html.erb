@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="text-center"><h1>Reservas</h1>
+          <% if current_user.rol == "Administrador" %>
             <%= link_to 'Nueva Reserva', new_reserva_path, class:"btn btn-default" %>
+          <%end%>
           </div>
 <div class="box">
             <!-- /.box-header -->
@@ -29,7 +31,7 @@
                       <td><%= reserva.fecha %></td>
                       <td><%= reserva.horainicio.strftime('%H:%m') %></td>
                       <td><%= reserva.horafin.strftime('%H:%m') %></td>
-                      <% if reserva.estado == 1 %>
+                      <% if reserva.estado == 1 && current_user == "Administrador" %>
                         <td style="color:red;">Por confirmar</td>
                         <td><a><%= link_to "¿Confirmar?", "", :href=> "/changestatereserva/" + reserva.id.to_s%></a></td>
                       <%else%>

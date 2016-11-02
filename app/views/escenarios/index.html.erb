@@ -4,6 +4,13 @@
     text-align: center;
     background-color:rgba(0, 0, 0, 0.2);
   }
+  .red{
+    color:red !important;
+  }
+  .disabled {
+  opacity: 0.65; 
+  cursor: not-allowed !important;
+}
 </style>
 <h2 class="text-center">Bienvenido, 
     <% if user_signed_in? %>
@@ -31,7 +38,11 @@
               
               <div class="card-content">
                 <center>
-                  <span class="card-title kaushanfont text-center"><%= escenario.nombre %> - <%= escenario.estado %></span>
+                  <% if escenario.estado == "En Reparación" || escenario.estado == "Inactivo" %>
+                    <span class="card-title kaushanfont text-center red"><%= escenario.nombre %> - <%= escenario.estado %></span>
+                  <%else%>
+                    <span class="card-title kaushanfont text-center"><%= escenario.nombre %> - <%= escenario.estado %></span>
+                  <%end%>
                 </center>
               </div>
               
@@ -42,7 +53,11 @@
                     <%= link_to 'Editar', edit_escenario_path(escenario) %>
                     <%= link_to 'Eliminar', escenario, method: :delete, data: { confirm: '¿Desea eliminar este escenario?' } %>
                   <%else%>
-                    <%= link_to 'Reservar', new_reserva_path(:idDeEscenario => escenario.id),class:"btn btn-default" %>
+                    <% if escenario.estado == "En Reparación" || escenario.estado == "Inactivo" %>
+                     <a class="btn btn-default" style="cursor: not-allowed;><%= link_to escenario.estado, nil, class:"btn btn-default disabled red" %></a>
+                    <%else%>
+                      <%= link_to 'Reservar', new_reserva_path(:idDeEscenario => escenario.id),class:"btn btn-default" %>
+                    <%end%>
                   <%end%>
                 <% else %>
                   <%= link_to 'Reservar', new_reserva_path(:idDeEscenario => escenario.id),class:"btn btn-default" %>

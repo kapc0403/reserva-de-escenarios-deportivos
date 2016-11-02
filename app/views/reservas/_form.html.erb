@@ -14,7 +14,7 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="field text-center">
     <%= f.label :fecha %><br>
-    <%= f.date_select :fecha, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 0, end_year: Date.today.year - 0}, {required: true} %>
+    <%= f.date_select :fecha, :order => [:day, :month, :year], :start_year => 2016, :end_year => 2017 %>
   </div>
   <div class="field text-center">
     <%= f.label :horainicio %><br>
